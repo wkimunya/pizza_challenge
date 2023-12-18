@@ -28,12 +28,12 @@ def create_restaurant():
 
     return jsonify({'message': 'Restaurant created successfully', 'id': new_restaurant.id}), 201
 
-# # Route to get all pizzas
-# @app.route('/pizzas', methods=['GET'])
-# def get_pizzas():
-#     pizzas = Pizza.query.all()
-#     pizza_list = [{'id': pizza.id, 'name': pizza.name} for pizza in pizzas]
-#     return jsonify({'pizzas': pizza_list})
+# Route to get all pizzas
+@app.route('/pizzas', methods=['GET'])
+def get_pizzas():
+    pizzas = Pizza.query.all()
+    pizza_list = [{'id': pizza.id, 'name': pizza.name} for pizza in pizzas]
+    return jsonify({'pizzas': pizza_list})
 
 # # Route to create a new pizza
 # @app.route('/pizzas', methods=['POST'])
