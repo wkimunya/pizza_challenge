@@ -62,25 +62,25 @@ def get_restaurant_pizzas():
 
     return jsonify({'restaurant_pizzas': response_data})
 
-# # Route to create a new restaurant-pizza combination with price
-# @app.route('/restaurant_pizzas', methods=['POST'])
-# def create_restaurant_pizza():
-#     data = request.get_json()
+# Route to create a new restaurant-pizza combination with price
+@app.route('/restaurant_pizzas', methods=['POST'])
+def create_restaurant_pizza():
+    data = request.get_json()
 
-#     if 'restaurant_id' not in data or 'pizza_id' not in data or 'price' not in data:
-#         return jsonify({'error': 'Restaurant ID, Pizza ID, and Price are required'}), 400
+    if 'restaurant_id' not in data or 'pizza_id' not in data or 'price' not in data:
+        return jsonify({'error': 'Restaurant ID, Pizza ID, and Price are required'}), 400
 
-#     restaurant = Restaurant.query.get(data['restaurant_id'])
-#     pizza = Pizza.query.get(data['pizza_id'])
+    restaurant = Restaurant.query.get(data['restaurant_id'])
+    pizza = Pizza.query.get(data['pizza_id'])
 
-#     if not restaurant or not pizza:
-#         return jsonify({'error': 'Invalid Restaurant ID or Pizza ID'}), 400
+    if not restaurant or not pizza:
+        return jsonify({'error': 'Invalid Restaurant ID or Pizza ID'}), 400
 
-#     new_restaurant_pizza = RestaurantPizza(restaurant=restaurant, pizza=pizza, price=data['price'])
-#     db.session.add(new_restaurant_pizza)
-#     db.session.commit()
+    new_restaurant_pizza = RestaurantPizza(restaurant=restaurant, pizza=pizza, price=data['price'])
+    db.session.add(new_restaurant_pizza)
+    db.session.commit()
 
-#     return jsonify({'message': 'Restaurant-pizza combination created successfully', 'id': new_restaurant_pizza.id}), 201
+    return jsonify({'message': 'Restaurant-pizza combination created successfully', 'id': new_restaurant_pizza.id}), 201
 
-# if __name__ == '__main__':
-#     app.run(port=5555)
+if __name__ == '__main__':
+    app.run(port=5555)
