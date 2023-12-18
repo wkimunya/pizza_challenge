@@ -24,6 +24,13 @@ class RestaurantPizza(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurants.id'))
     pizza_id = db.Column(db.Integer, db.ForeignKey('pizzas.id'))
+    price = db.Column(db.Float)
 
     restaurant = db.relationship('Restaurant', back_populates='restaurant_pizzas')
     pizza = db.relationship('Pizza', back_populates='restaurant_pizzas')
+
+    @validates('price')
+    def validate_price(self, key, price):
+        if not (1 <= price <= 30):
+            raise ValueError("Price must be between 1 and 30.")
+        return price
