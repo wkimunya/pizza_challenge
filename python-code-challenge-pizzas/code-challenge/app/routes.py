@@ -14,19 +14,19 @@ def get_restaurants():
     restaurant_list = [{'id': restaurant.id, 'name': restaurant.name} for restaurant in restaurants]
     return jsonify({'restaurants': restaurant_list})
 
-# # Route to create a new restaurant
-# @app.route('/restaurants', methods=['POST'])
-# def create_restaurant():
-#     data = request.get_json()
+# Route to create a new restaurant
+@app.route('/restaurants', methods=['POST'])
+def create_restaurant():
+    data = request.get_json()
 
-#     if 'name' not in data:
-#         return jsonify({'error': 'Name is required'}), 400
+    if 'name' not in data:
+        return jsonify({'error': 'Name is required'}), 400
 
-#     new_restaurant = Restaurant(name=data['name'])
-#     db.session.add(new_restaurant)
-#     db.session.commit()
+    new_restaurant = Restaurant(name=data['name'])
+    db.session.add(new_restaurant)
+    db.session.commit()
 
-#     return jsonify({'message': 'Restaurant created successfully', 'id': new_restaurant.id}), 201
+    return jsonify({'message': 'Restaurant created successfully', 'id': new_restaurant.id}), 201
 
 # # Route to get all pizzas
 # @app.route('/pizzas', methods=['GET'])
