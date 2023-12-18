@@ -49,18 +49,18 @@ def create_pizza():
 
     return jsonify({'message': 'Pizza created successfully', 'id': new_pizza.id}), 201
 
-# # Route to get all restaurant-pizza combinations with prices
-# @app.route('/restaurant_pizzas', methods=['GET'])
-# def get_restaurant_pizzas():
-#     restaurant_pizzas = RestaurantPizza.query.all()
-#     response_data = []
+# Route to get all restaurant-pizza combinations with prices
+@app.route('/restaurant_pizzas', methods=['GET'])
+def get_restaurant_pizzas():
+    restaurant_pizzas = RestaurantPizza.query.all()
+    response_data = []
 
-#     for rp in restaurant_pizzas:
-#         restaurant_data = {'restaurant_id': rp.restaurant.id, 'restaurant_name': rp.restaurant.name}
-#         pizza_data = {'pizza_id': rp.pizza.id, 'pizza_name': rp.pizza.name, 'price': rp.price}
-#         response_data.append({'restaurant': restaurant_data, 'pizza': pizza_data})
+    for rp in restaurant_pizzas:
+        restaurant_data = {'restaurant_id': rp.restaurant.id, 'restaurant_name': rp.restaurant.name}
+        pizza_data = {'pizza_id': rp.pizza.id, 'pizza_name': rp.pizza.name, 'price': rp.price}
+        response_data.append({'restaurant': restaurant_data, 'pizza': pizza_data})
 
-#     return jsonify({'restaurant_pizzas': response_data})
+    return jsonify({'restaurant_pizzas': response_data})
 
 # # Route to create a new restaurant-pizza combination with price
 # @app.route('/restaurant_pizzas', methods=['POST'])
